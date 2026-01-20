@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import foxLogo from '../assets/fox-logo.png'
 
 const API_URL = "https://randomfox.ca/floof/"
@@ -14,7 +14,7 @@ function FoxImage() {
     setLoading(true)
     fetch(API_URL)
       .then(response => {
-        if (!r.ok) { throw new Error("Failed to fetch image"); }
+        if (!response.ok) { throw new Error("Failed to fetch image"); }
         return response.json();
       })
       .then(data => {
@@ -22,6 +22,7 @@ function FoxImage() {
         setLoading(false);
       })
       .catch(error => console.log(error));
+      setLoading(false)
   }
 
    useEffect(
